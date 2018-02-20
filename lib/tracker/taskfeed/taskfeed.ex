@@ -19,6 +19,7 @@ defmodule Tracker.Taskfeed do
   """
   def list_tasks do
     Repo.all(Task)
+    |> Repo.preload(:assigned_to)
   end
 
   @doc """
@@ -37,7 +38,7 @@ defmodule Tracker.Taskfeed do
   """
   def get_task!(id) do
     Repo.get!(Task, id)
-    |> Repo.preload(:user)
+    |> Repo.preload(:assigned_to)
   end
 
   @doc """

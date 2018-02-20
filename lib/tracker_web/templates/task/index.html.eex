@@ -7,7 +7,7 @@
       <th>Description</th>
       <th>Time taken</th>
       <th>Is completed</th>
-
+      <th>Assigned to</th>
       <th></th>
     </tr>
   </thead>
@@ -18,6 +18,7 @@
       <td><%= task.description %></td>
       <td><%= task.time_taken %></td>
       <td><%= task.is_completed %></td>
+      <td><%= task.assigned_to.name %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: task_path(@conn, :show, task), class: "btn btn-default btn-xs" %></span>
