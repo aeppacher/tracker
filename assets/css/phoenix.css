@@ -21,6 +21,7 @@ body, form, ul, table {
 .header {
   border-bottom: 1px solid #e5e5e5;
 }
+
 .logo {
   width: 519px;
   height: 71px;
@@ -35,6 +36,10 @@ body, form, ul, table {
 .marketing {
   padding-right: 15px;
   padding-left: 15px;
+}
+
+.card-title-done {
+	text-decoration: line-through;
 }
 
 /* Customize container */

@@ -19,7 +19,7 @@ defmodule TrackerWeb.TaskController do
       {:ok, task} ->
         conn
         |> put_flash(:info, "Task created successfully.")
-        |> redirect(to: task_path(conn, :show, task))
+        |> redirect(to: "/feed")
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -55,6 +55,6 @@ defmodule TrackerWeb.TaskController do
 
     conn
     |> put_flash(:info, "Task deleted successfully.")
-    |> redirect(to: task_path(conn, :index))
+    |> redirect(to: "/feed")
   end
 end
