@@ -2,7 +2,7 @@
 
 export PORT=5200
 export MIX_ENV=prod
-export GIT_PATH=/home/tracker/src/tracker 
+export GIT_PATH=/home/aeppacher/src/tracker 
 
 PWD=`pwd`
 if [ $PWD != $GIT_PATH ]; then
@@ -11,8 +11,8 @@ if [ $PWD != $GIT_PATH ]; then
 	exit 1
 fi
 
-if [ $USER != "tracker" ]; then
-	echo "Error: must run as user 'tracker'"
+if [ $USER != "aeppacher" ]; then
+	echo "Error: must run as user 'aeppacher'"
 	echo "  Current user is $USER"
 	exit 2
 fi
