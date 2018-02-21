@@ -22,7 +22,8 @@
               <%= link "Log Out", to: "/session", method: :delete %>
             </p>
           <% else %>
-            <p>Not logged in.</p>
+            <p>Not logged in.
+            <%= link "Login", to: page_path(@conn, :index) %></p>
           <% end %>
         </div>
       </div>
