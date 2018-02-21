@@ -30,5 +30,5 @@
 </ul>
 
 <span><%= link "Edit", to: task_path(@conn, :edit, @task) %></span>
-<span><%= link "Back", to: task_path(@conn, :index) %></span>
+<span><%= link "Back", to: page_path(@conn, :feed) %></span>
 <span><%= link "Delete", to: task_path(@conn, :delete, @task), method: :delete, data: [confirm: "Are you sure?"]%></span>
