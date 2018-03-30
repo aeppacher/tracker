@@ -13,19 +13,31 @@
 
   <body>
     <div class="container">
-
-    	<div class="row">
-        <div id="header-container" class="col-3 offset-9">
-          <%= if @current_user do %>
-            <p>
+      <div class="row">
+        <%= if @current_user do %>
+          <div class="col-9">
+            <p class="p-4">
+              <div class="btn-group">
+                <a class="btn btn-default" href="/users">Manage Users</a>
+                <a class="btn btn-default" href="/feed">View Feed</a>
+                <a class="btn btn-default" href="/tasks">New Task</a>
+              </div>
+            </p>
+          </div>
+          <div class="col-3">
+            <p class="p-4">
               Logged in as: <%= @current_user.name %> |
               <%= link "Log Out", to: "/session", method: :delete %>
             </p>
-          <% else %>
-            <p>Not logged in.
-            <%= link "Login", to: page_path(@conn, :index) %></p>
-          <% end %>
-        </div>
+          </div>
+        <% else %>
+          <div class="col-3 offset-9">
+            <p>
+              Not logged in.
+              <%= link "Login", to: page_path(@conn, :index) %>
+            </p>
+          </div>
+        <% end %>
       </div>
 
       <%= if get_flash(@conn, :info) do %>
@@ -38,23 +50,6 @@
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
-
-      <div class="row">
-        <div id="footer-container">
-          <%= if @current_user do %>
-          	<button id="manage-users-button">
-          		<%= link "Manage Users", to: user_path(@conn, :index) %>
-          	</button>
-          	<button id="view-feed-button">
-          		<%= link "View Feed", to: page_path(@conn, :feed) %>
-          	</button>
-          	<button id="new-task-button">
-          		<%= link "New Task", to: task_path(@conn, :new) %>
-          	</button>
-          <% else %>
-          <% end %>
-        </div>
-      </div>
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
