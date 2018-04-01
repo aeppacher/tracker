@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export PORT=5200
+export PORT=5201
 export MIX_ENV=prod
-export GIT_PATH=/home/tracker/src/tracker 
+export GIT_PATH=/home/tracker2/src/tracker 
 
 PWD=`pwd`
 if [ $PWD != $GIT_PATH ]; then
@@ -11,8 +11,8 @@ if [ $PWD != $GIT_PATH ]; then
 	exit 1
 fi
 
-if [ $USER != "tracker" ]; then
-	echo "Error: must run as user 'tracker'"
+if [ $USER != "tracker2" ]; then
+	echo "Error: must run as user 'tracker2'"
 	echo "  Current user is $USER"
 	exit 2
 fi
@@ -32,8 +32,8 @@ if [ -d ~/www/tracker ]; then
 	mv ~/www/tracker ~/old/$NOW
 fi
 
-mkdir -p ~/www/tracker
-REL_TAR=~/src/tracker/_build/prod/rel/tracker/releases/0.0.1/tracker.tar.gz
+mkdir -p ~/www/tracker2
+REL_TAR=~/src/tracker2/_build/prod/rel/tracker/releases/0.0.1/tracker.tar.gz
 (cd ~/www/tracker && tar xzvf $REL_TAR)
 
 crontab - <<CRONTAB
