@@ -24,11 +24,6 @@
   </li>
 
   <li>
-    <strong>Time taken:</strong>
-    <%= @task.time_taken %>
-  </li>
-
-  <li>
     <strong>Is completed:</strong>
     <%= @task.is_completed %>
   </li>
@@ -36,8 +31,7 @@
    <li>
   	<strong>TimeBlocks:</strong>
   	<ul>
-
-		<%= @task.timeblocks |> Enum.with_index |> Enum.map( fn({element,index}) -> %>
+		  <%= @task.timeblocks |> Enum.with_index |> Enum.map( fn({element,index}) -> %>
 				<strong>
           <%= if rem(index, 2) == 0 do %>
   	  			<%= NaiveDateTime.truncate(element.time, :second) %> -
@@ -45,23 +39,25 @@
             <%= NaiveDateTime.truncate(element.time, :second) %> <br>
           <%= end %>
 	  		</strong>
-  	<% end) %>
+  	  <% end) %>
   	</ul>
   </li>
 </ul>
 
+<%= if (@current_user.id ===  @task.assigned_to_id && !@task.is_completed) do %>
 <button class="timeblock-button btn btn-secondary btn-xs"
-				data-task-id="<%= @task.id %>" 
-				data-assigned_to="<%= @task.assigned_to_id %>"
-        data-task-title="<%= @task.title %>"
-        data-task-description="<%= @task.description %>"
-        data-is-completed="<%= @task.assigned_to_id %>">
+				data-task-id="<%= @task.id %>" >
   Log Time
 </button>
 
 </br>
 
+<%= end %>
 
-<span><%= link "Edit", to: task_path(@conn, :edit, @task) %></span>
+
 <span><%= link "Back", to: page_path(@conn, :feed) %></span>
+
+<%= if (Enum.member?(@current_user.managees, @task.assigned_to)) do %>
+<span><%= link "Edit", to: task_path(@conn, :edit, @task) %></span>
 <span><%= link "Delete", to: task_path(@conn, :delete, @task), method: :delete, data: [confirm: "Are you sure?"]%></span>
+<%= end %>
