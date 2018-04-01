@@ -5,8 +5,8 @@ defmodule Tracker.Taskfeed.Manage do
 
 
   schema "manages" do
-    belongs_to :manager, User
-    belongs_to :managee, User
+    belongs_to :manager, Tracker.Accounts.User
+    belongs_to :managee, Tracker.Accounts.User
 
     timestamps()
   end

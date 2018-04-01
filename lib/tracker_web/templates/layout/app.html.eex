@@ -19,8 +19,9 @@
             <p class="p-4">
               <div class="btn-group">
                 <a class="btn btn-default" href="/users">Manage Users</a>
-                <a class="btn btn-default" href="/feed">View Feed</a>
-                <a class="btn btn-default" href="/tasks">New Task</a>
+                <a class="btn btn-default" href="/feed">My Feed</a>
+                <a class="btn btn-default" href="/tasks">View Tasks</a>
+                <a class="btn btn-default" href="/tasks/new">New Tasks</a>
               </div>
             </p>
           </div>

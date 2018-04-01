@@ -26,6 +26,7 @@ defmodule TrackerWeb.Router do
 
     get "/", PageController, :index
     get "/feed", PageController, :feed
+    get "/start_tracking", PageController, :start_tracking
     resources "/users", UserController
     resources "/tasks", TaskController
 
@@ -34,8 +35,8 @@ defmodule TrackerWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  scope "/api/v1", MicroblogWeb do
-    pipe_through :api
+  scope "/api/v1", TrackerWeb do
     resources "/manages", ManageController, except: [:new, :edit]
+    resources "/timeblocks", TimeblockController, except: [:new, :edit]
   end
 end

@@ -1,7 +1,6 @@
 <h2>Show User</h2>
 
 <ul>
-
   <li>
     <strong>Email:</strong>
     <%= @user.email %>
@@ -12,6 +11,31 @@
     <%= @user.name %>
   </li>
 
+  <li>
+  	<strong>Managers:</strong>
+  	<ul>
+		<%= Enum.map @user.managers, fn manager -> %>
+			<li>
+				<strong>
+	  			<%= manager.name %>
+	  		</strong>
+  		</li>
+  	<% end %>
+  	</ul>
+  </li>
+
+  <li>
+  	<strong>Subordinates:</strong>
+  	<ul>
+		<%= Enum.map @user.managees, fn managee -> %>
+			<li>
+				<strong>
+	  			<%= managee.name %>
+	  		</strong>
+  		</li>
+  	<% end %>
+  	</ul>
+  </li>
 </ul>
 
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>

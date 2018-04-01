@@ -1,3 +1,9 @@
+<script>
+  window.current_user_id = "<%= @current_user.id %>";
+</script>
+
+<meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
+
 <h2>Show Task</h2>
 
 <ul>
@@ -27,7 +33,34 @@
     <%= @task.is_completed %>
   </li>
 
+   <li>
+  	<strong>TimeBlocks:</strong>
+  	<ul>
+
+		<%= @task.timeblocks |> Enum.with_index |> Enum.map( fn({element,index}) -> %>
+				<strong>
+          <%= if rem(index, 2) == 0 do %>
+  	  			<%= NaiveDateTime.truncate(element.time, :second) %> -
+          <%= else %>
+            <%= NaiveDateTime.truncate(element.time, :second) %> <br>
+          <%= end %>
+	  		</strong>
+  	<% end) %>
+  	</ul>
+  </li>
 </ul>
+
+<button class="timeblock-button btn btn-secondary btn-xs"
+				data-task-id="<%= @task.id %>" 
+				data-assigned_to="<%= @task.assigned_to_id %>"
+        data-task-title="<%= @task.title %>"
+        data-task-description="<%= @task.description %>"
+        data-is-completed="<%= @task.assigned_to_id %>">
+  Log Time
+</button>
+
+</br>
+
 
 <span><%= link "Edit", to: task_path(@conn, :edit, @task) %></span>
 <span><%= link "Back", to: page_path(@conn, :feed) %></span>

@@ -15,6 +15,7 @@ defmodule TrackerWeb.TaskController do
   end
 
   def create(conn, %{"task" => task_params}) do
+    IO.puts("fuck nuggets");
     case Taskfeed.create_task(task_params) do
       {:ok, task} ->
         conn

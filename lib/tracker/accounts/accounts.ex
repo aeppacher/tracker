@@ -19,6 +19,8 @@ defmodule Tracker.Accounts do
   """
   def list_users do
     Repo.all(User)
+    |> Repo.preload(:managees)
+    |> Repo.preload(:managers)
   end
 
   @doc """
@@ -35,10 +37,18 @@ defmodule Tracker.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
-  
-  def get_user(id), do: Repo.get(User, id)
+  def get_user!(id) do
+    Repo.get!(User, id)
+    |> Repo.preload(:managees)
+    |> Repo.preload(:managers)
+  end
 
+  def get_user(id) do
+    Repo.get(User, id)
+    |> Repo.preload(:managees)
+    |> Repo.preload(:managers)
+  end
+  
   def get_user_by_email(email) do
     Repo.get_by(User, email: email)
   end
